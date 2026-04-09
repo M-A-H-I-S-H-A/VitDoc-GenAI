@@ -5,16 +5,16 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
 import path from "path";
 
-const frontendPath = path.resolve("frontend");
+const frontendPath = path.join(process.cwd(), "frontend");
 
 app.use(express.static(frontendPath));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
 });
-
 // OPTIONAL: Test route
 app.get("/test", (req, res) => {
   res.send("VitDoc LLM Chatbot is running 🚀");
