@@ -1,24 +1,14 @@
 import express from "express";
 import cors from "cors";
 import fetch from "node-fetch";
-import path from "path";
-import { fileURLToPath } from "url";
-
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("frontend"));
 
-// Path setup (IMPORTANT for ES modules)
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Serve frontend
-app.use(express.static(path.join(__dirname, "frontend")));
-
-// Homepage → UI
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "index.html"));
+  res.sendFile("index.html", { root: "frontend" });
 });
 
 // OPTIONAL: Test route
@@ -70,5 +60,5 @@ app.post("/chat", async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
