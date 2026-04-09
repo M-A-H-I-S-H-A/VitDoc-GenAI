@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, "frontend")));
 
 // Homepage → show UI
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "index.html"));
+  res.sendFile("index.html", { root: path.join(__dirname, "frontend") });
 });
 
 // Chat route
