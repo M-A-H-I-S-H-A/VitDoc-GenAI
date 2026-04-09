@@ -2,27 +2,29 @@ import express from "express";
 import cors from "cors";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
-
 import path from "path";
 import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Serve frontend files
-app.use(express.static(path.join(__dirname, "vitdoc frontend llm")));
-
-// Show UI on homepage
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "vitdoc frontend llm", "index.html"));
-});
 
 dotenv.config();
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
+// Path setup
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve frontend (RENAME folder to 'frontend')
+app.use(express.static(path.join(__dirname, "frontend")));
+
+// Homepage → show UI
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "index.html"));
+});
+
+// Chat route
 app.post("/chat", async (req, res) => {
   try {
     const { message, profile } = req.body;
@@ -62,7 +64,9 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log("Server running on port 3000"));
-app.get("/", (req, res) => {
-  res.send("VitDoc LLM Chatbot is running 🚀");
+// IMPORTANT: keep listen at the END
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
