@@ -607,7 +607,7 @@ async function generateAIResponse(input, hasImage = false) {
             }
         }
 
-        const res = await fetch("https://vitdoc-genai-production.up.railway.app/chat", {
+        const res = await fetch("/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
