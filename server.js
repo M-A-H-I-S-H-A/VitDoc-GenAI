@@ -3,6 +3,20 @@ import cors from "cors";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
 
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve frontend files
+app.use(express.static(path.join(__dirname, "vitdoc frontend llm")));
+
+// Show UI on homepage
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "vitdoc frontend llm", "index.html"));
+});
+
 dotenv.config();
 
 const app = express();
