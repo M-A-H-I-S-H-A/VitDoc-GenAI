@@ -19,6 +19,16 @@ app.get("/", (req, res) => {
 app.get("/test", (req, res) => {
   res.send("VitDoc LLM Chatbot is running 🚀");
 });
+import fs from "fs";
+
+
+
+if (fs.existsSync(frontendPath)) {
+  app.use(express.static(frontendPath));
+  app.get("/", (req, res) => {
+    res.sendFile(path.join(frontendPath, "index.html"));
+  });
+}
 
 // Chat route
 app.post("/chat", async (req, res) => {
