@@ -5,10 +5,14 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("frontend"));
+import path from "path";
+
+const frontendPath = path.resolve("frontend");
+
+app.use(express.static(frontendPath));
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: "frontend" });
+  res.sendFile(path.join(frontendPath, "index.html"));
 });
 
 // OPTIONAL: Test route
