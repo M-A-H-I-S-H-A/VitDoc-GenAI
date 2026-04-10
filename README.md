@@ -29,8 +29,8 @@ Compared to the non-LLM version:
 More intelligent responses
 Better user interaction
 Higher flexibility
-🔐 API Note
 
+🔐 API Note
 This project uses the Gemini API key for generating AI responses.
 Make sure to add your API key in environment variables before running locally.
 
