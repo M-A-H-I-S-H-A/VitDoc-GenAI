@@ -11,19 +11,21 @@ LLM-based response generation
 User-friendly interface
 Fast and interactive results
 Backend API integration
+
 🛠️ Tech Stack
 Frontend: HTML, CSS, JavaScript
 Backend: Node.js, Express
 AI: Gemini API (LLM)
+
 ⚙️ How to Run Locally
 git clone https://github.com/your-username/VitDoc-GenAI.git
 cd VitDoc-GenAI
 npm install
 node server.js
+
 📊 Comparison
 
 Compared to the non-LLM version:
-
 More intelligent responses
 Better user interaction
 Higher flexibility
